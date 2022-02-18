@@ -8,6 +8,7 @@ function OrderListItem({
   pickupLocation,
   deliveryLocation,
   ordererName,
+  phoneNumber,
 }) {
   const deleteOrderfromList = () => {
     deleteOrder(confirmationNo)
@@ -36,8 +37,8 @@ function OrderListItem({
             height: 180,
           }}>
           <View style={styles.detailsOrientation}>
-            <Text style={styles.flatListTitles}>Confirmation Number:</Text>
-            <Text style={styles.flatListDetails}>{confirmationNo}</Text>
+            <Text style={styles.flatListTitles}>Phone Number:</Text>
+            <Text style={styles.flatListDetails}>{phoneNumber}</Text>
           </View>
 
           <View style={styles.detailsOrientation}>

@@ -145,13 +145,16 @@ function Review({navigation}) {
   const [orderStatus, setOrderStatus] = useState('');
   const [orderTime, setOrderTime] = useState('');
   const [loading, setLoading] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const renderItem = ({item}) => (
     <OrderListItemReview
-      confirmationNo={item.ConfirmationNo}
+      //confirmationNo={item.ConfirmationNo}
+      phoneNumber={item.PhoneNumber}
       pickupLocation={item.PickupLocation}
       deliveryLocation={item.DeliveryLocation}
       ordererName={item.OrdererName}
+      
     />
   );
 
@@ -171,6 +174,7 @@ function Review({navigation}) {
             Deliverer,
             OrderStatus,
             OrderTime,
+            PhoneNumber,
           } = doc.data();
           if (
             Orderer == Auth().currentUser.uid &&
@@ -181,6 +185,7 @@ function Review({navigation}) {
               PickupLocation,
               DeliveryLocation,
               OrdererName,
+              PhoneNumber,
             });
           }
         });
@@ -206,17 +211,17 @@ function Review({navigation}) {
 
         <View style={styles.detailsOrientation}>
           <Text style={styles.feeDetails}>Delivery Fee</Text>
-          <Text style={styles.feeCost}>$3.00</Text>
+          <Text style={styles.feeCost}>$0.00</Text>
         </View>
         <View style={styles.detailsOrientation}>
           <Text style={styles.totalDetails}>Total</Text>
-          <Text style={styles.totalCost}>$3.00</Text>
+          <Text style={styles.totalCost}>$0.00</Text>
         </View>
 
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.checkoutButton}
-            onPress={() => navigation.navigate('Checkout')}>
+            onPress={() => navigation.navigate('Payment')}>
             <Text style={styles.titlesButton}>Checkout</Text>
           </TouchableOpacity>
         </View>
@@ -236,28 +241,28 @@ const styles = StyleSheet.create({
   feeDetails: {
     color: '#7D7D7D',
     fontFamily: 'Mark-Medium',
-    fontSize: 24,
+    fontSize: 22,
     marginTop: 15,
     marginLeft: 20,
   },
   feeCost: {
     color: '#7D7D7D',
     fontFamily: 'Mark-Medium',
-    fontSize: 24,
+    fontSize: 22,
     marginTop: 15,
     marginLeft: 140,
   },
   totalDetails: {
     color: '#4A4949',
     fontFamily: 'Mark-Bold',
-    fontSize: 26,
+    fontSize: 22,
     marginTop: 10,
     marginLeft: 20,
   },
   totalCost: {
     color: '#4A4949',
     fontFamily: 'Mark-Bold',
-    fontSize: 26,
+    fontSize: 22,
     marginTop: 10,
     marginLeft: 215,
   },

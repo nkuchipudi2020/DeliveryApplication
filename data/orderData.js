@@ -8,6 +8,7 @@ export const orderData = [
     Deliverer: null,
     OrderStatus: null,
     OrderTime: null,
+    PhoneNumber: null,
   },
 ];
 
@@ -17,5 +18,6 @@ export const orderDisplayData = [
     PickupLocation: null,
     DeliveryLocation: null,
     OrdererName: null,
+    PhoneNumber: null,
   },
 ];

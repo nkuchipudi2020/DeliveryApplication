@@ -165,7 +165,7 @@ function OrderStatus1({navigation}) {
             });
           }
           if (Orderer == Auth().currentUser.uid && OrderStatus == 'picked up') {
-            navigation.navitate('OrdererStatus2');
+            navigation.naviate('OrdererStatus2');
           }
         });
 

@@ -157,6 +157,7 @@ const dropoffs = ['East Hall', 'Daniels Hall', 'Morgans Hall'];
 function Order({navigation}) {
   const ref = firestore().collection('Allorder');
   const user = Auth().currentUser;
+  const [orderID, setOrderID] = useState('');
   const [order, setOrder] = useState('');
   const [orderList, setOrderList] = useState([]);
   const [orderer, setOrderer] = useState('');
@@ -168,6 +169,7 @@ function Order({navigation}) {
   const [orderStatus, setOrderStatus] = useState('');
   const [orderTime, setOrderTime] = useState('');
   const [loading, setLoading] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   //const newFood = {
   //       confirmationNo: this.state.newConfirmationNo,
@@ -186,6 +188,7 @@ function Order({navigation}) {
       null,
       'not reviewed',
       null,
+      phoneNumber,
     )
       .then(data => {
         orderDisplayData.push(orderList);
@@ -212,12 +215,14 @@ function Order({navigation}) {
             Deliverer,
             OrderStatus,
             OrderTime,
+            PhoneNumber,
           } = doc.data();
           list.push({
             ConfirmationNo,
             PickupLocation,
             DeliveryLocation,
             OrdererName,
+            PhoneNumber,
           });
         });
 
@@ -235,15 +240,15 @@ function Order({navigation}) {
         <Text style={styles.titlesDesc}>
           Use the information for your order from the Dine on Campus app.
         </Text>
-        <Text style={styles.titlesTitle}>Confirmation Number</Text>
+        <Text style={styles.titlesTitle}>Phone Number</Text>
         <TextInput
           style={styles.textBox}
-          placeholder="Enter confirmation number"
+          placeholder="Enter phone number"
           placeholderTextColor="#7D7D7D"
           //onChangeText={text => this.setState({newConfirmationNo: text})}
           //value={this.state.newConfirmationNo}
-          value={confirmationNo}
-          onChangeText={setConfirmationNo}
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
         />
 
         <Text style={styles.titlesTitle}>Pickup Location</Text>

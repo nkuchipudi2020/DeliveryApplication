@@ -307,6 +307,7 @@ function Status({navigation}) {
   const ref = firestore().collection('Allorder');
   const user = Auth().currentUser;
   //const [order, setOrder] = useState('');
+  const [orderID, setOrderID] = useState('');
   const [orderList, setOrderList] = useState([]);
   const [orderer, setOrderer] = useState('');
   const [confirmationNo, setConfirmationNo] = useState('');
@@ -317,6 +318,7 @@ function Status({navigation}) {
   const [orderStatus, setOrderStatus] = useState('');
   const [orderTime, setOrderTime] = useState('');
   const [loading, setLoading] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const updateAll = () => {
     orderList.forEach(order => {
@@ -329,7 +331,8 @@ function Status({navigation}) {
 
   const renderItem = ({item}) => (
     <OrderListItem
-      confirmationNo={item.ConfirmationNo}
+      phoneNumber = {item.PhoneNumber}
+      //confirmationNo={item.ConfirmationNo}
       pickupLocation={item.PickupLocation}
       deliveryLocation={item.DeliveryLocation}
       ordererName={item.OrdererName}
@@ -352,6 +355,7 @@ function Status({navigation}) {
             Deliverer,
             OrderStatus,
             OrderTime,
+            PhoneNumber,
           } = doc.data();
           if (
             Orderer == Auth().currentUser.uid &&
@@ -362,6 +366,7 @@ function Status({navigation}) {
               PickupLocation,
               DeliveryLocation,
               OrdererName,
+              PhoneNumber,
             });
           }
         });

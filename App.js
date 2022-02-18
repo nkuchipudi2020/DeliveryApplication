@@ -28,6 +28,8 @@ import DelivererHome from './components/DelivererHome';
 import LoginDeliverer from './components/LoginDeliverer';
 import Settings from './components/Settings';
 import DelivererSettings from './components/DelivererSettings';
+import Payment from './components/Payment';
+import StaticStatus from './components/StaticStatus';
 import {Auth} from './Setup';
 import {SignInUser, SignOutUser} from './firebase/apiService';
 
@@ -100,6 +102,7 @@ function Login({navigation}) {
         placeholder="Password"
         placeholderTextColor="#7D7D7D"
         value={state.password}
+        secureTextEntry={true}
         onChangeText={text => setState({...state, password: text})}
       />
       <View style={styles.orientation}>
@@ -320,6 +323,8 @@ function App() {
         <Stack.Screen name="DelivererHome" component={DelivererHome} />
         <Stack.Screen name="LoginDeliverer" component={LoginDeliverer} />
         <Stack.Screen name="DelivererSettings" component={DelivererSettings} />
+        <Stack.Screen name="Payment" component={Payment}/>
+        <Stack.Screen name ="StaticStatus" component={StaticStatus}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

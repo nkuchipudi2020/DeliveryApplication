@@ -79,6 +79,7 @@ function LoginDeliverer({navigation}) {
         placeholder="Password"
         placeholderTextColor="#7D7D7D"
         value={state.password}
+        secureTextEntry={true}
         onChangeText={text => setState({...state, password: text})}
       />
       <View style={styles.orientation}>

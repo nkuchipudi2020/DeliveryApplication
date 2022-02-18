@@ -75,24 +75,22 @@ export const submitOrder = (
   Deliverer,
   OrderStatus,
   OrderTime,
+  PhoneNumber,
 ) => {
   return new Promise(function (resolve, reject) {
     let key;
-    if (ConfirmationNo != null) {
-      key = ConfirmationNo;
-    } else {
-      //key = database().ref().push().key;
-      alert('Please input your Confirmation Code');
-    }
+      key = database().ref().push().key;
+      //alert('Please input your Confirmation Code');
     let dataToSave = {
       Orderer: Orderer,
-      ConfirmationNo: ConfirmationNo,
+      ConfirmationNo: key,
       PickupLocation: PickupLocation,
       DeliveryLocation: DeliveryLocation,
       OrdererName: OrdererName,
       Deliverer: Deliverer,
       OrderStatus: OrderStatus,
       OrderTime: OrderTime,
+      PhoneNumber: PhoneNumber,
     };
     database()
       .ref('order/' + key)
@@ -115,26 +113,25 @@ export const createOrder = (
   Deliverer,
   OrderStatus,
   OrderTime,
+  PhoneNumber,
 ) => {
   return new Promise(function (resolve, reject) {
     let key;
-    if (ConfirmationNo != null) {
-      key = ConfirmationNo;
-    } else {
-      //key = database().ref().push().key;
-      alert('Please input your Confirmation Code');
-    }
+    key = database().ref().push().key;
+    console.log("key", key);
+    // alert('Please input your Confirmation Code');
     let dataToSave = {
       Orderer: Orderer,
-      ConfirmationNo: ConfirmationNo,
+      ConfirmationNo: key,
       PickupLocation: PickupLocation,
       DeliveryLocation: DeliveryLocation,
       OrdererName: OrdererName,
       Deliverer: Deliverer,
       OrderStatus: OrderStatus,
       OrderTime: OrderTime,
+      PhoneNumber: PhoneNumber,
     };
-    firestore()
+    const docRef = firestore()
       .collection('AllOrder')
       .doc(key)
       .set(dataToSave)
@@ -162,11 +159,11 @@ export const getOrderListbyOrderer = Orderer => {
   });
 };
 
-export const deleteOrder = ConfirmationNo => {
+export const deleteOrder = key => {
   return new Promise(function (resolve, reject) {
     firestore()
       .collection('AllOrder')
-      .doc(ConfirmationNo)
+      .doc(key)
       .delete()
       .then(snapshot => {
         resolve(snapshot);
@@ -176,6 +173,7 @@ export const deleteOrder = ConfirmationNo => {
       });
   });
 };
+
 export const updateOrderStatusDeliverer = (
   ConfirmationNo,
   newStatus,
